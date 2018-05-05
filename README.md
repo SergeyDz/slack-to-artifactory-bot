@@ -1,1 +1,1 @@
-# slack-to-artifactory-bot-
+# slack-to-artifactory-bot
