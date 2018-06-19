@@ -13,8 +13,8 @@ scalaVersion := "2.12.4"
 // It's possible to define many kinds of settings, such as:
 
 name := "slack-to-artifactory-bot"
-organization := "ch.epfl.scala"
-version := "1.0"
+organization := "SBTech"
+version := "2.0"
 
 // Note, it's not required for you to define these three settings. These are
 // mostly only necessary if you intend to publish your library's binaries on a
