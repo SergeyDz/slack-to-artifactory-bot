@@ -24,8 +24,8 @@ resolvers += "Akka Snapshot Repository" at "http://repo.akka.io/snapshots/"
 
 libraryDependencies ++= Seq(
   "com.github.gilbertw1" %% "slack-scala-client" % "0.2.3",
-  "org.typelevel" %% "cats-core" % "1.0.1",
-  "com.typesafe.akka" %% "akka-actor" % "2.4.20"
+  "com.typesafe.akka" %% "akka-actor" % "2.4.20",
+  "org.jfrog.artifactory.client" % "artifactory-java-client-services" % "0.16"
 )
 
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
