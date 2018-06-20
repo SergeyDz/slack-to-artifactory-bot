@@ -1,4 +1,4 @@
 package model
 
-case class UploadCompleted(channel : String, message : String) {
+case class UploadCompleted(message : String, var channel : String) {
 }

@@ -1,6 +1,6 @@
 package actors.slack
 
-import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+import akka.actor.{Actor, ActorLogging, ActorRef, PoisonPill, Props}
 import config.Settings
 import model.{SlackFile, UploadCompleted}
 import slack.rtm.SlackRtmClient
@@ -32,6 +32,7 @@ class SlackChannelActor(val settings : Settings) extends Actor with ActorLogging
     }
     case completed: UploadCompleted => {
       client.sendMessage(completed.channel, completed.message)
+      sender ! PoisonPill.getInstance
     }
   }
 }
