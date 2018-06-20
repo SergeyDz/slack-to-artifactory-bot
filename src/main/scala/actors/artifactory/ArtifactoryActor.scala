@@ -18,9 +18,9 @@ class ArtifactoryActor(val settings : Settings)  extends Actor with ActorLogging
       sender ! new DeleteSlackFile(nuget.file.slack.url)
 
       if (!isExists) {
-        val fullUrl = String.format("%s/webapp/#/artifacts/browse/tree/General/%s/%s/%s", this.settings.artifactoryBaseUrl, targetRepository, nuget.id, nuget.file.slack.name)
+        val fullUrl = buildNugetPackageArtifactoryPath(targetRepository, nuget)
         artifactory.repository(targetRepository).upload(String.format("%s/%s", nuget.id, nuget.file.slack.name), new File(nuget.file.localPath)).doUpload
-        sender ! new UploadCompleted(s":artifactory: package upload to ${targetRepository} completed: <${fullUrl}|${nuget.file.slack.name}>", null)
+        sender ! new UploadCompleted(s":artifactory: package upload to ${targetRepository} completed: ${fullUrl}", null)
       }
       else {
         log.warning(s":no_entry_sign: package already exists: ${nuget.file.slack.name}")
@@ -31,5 +31,9 @@ class ArtifactoryActor(val settings : Settings)  extends Actor with ActorLogging
 
   private def checkIfPackageExistsInArtifactory(nuget: NugetPackage, targetRepository : String) : Boolean = {
     !artifactory.searches.repositories(targetRepository).artifactsByName(nuget.file.slack.name).doSearch.isEmpty
+  }
+
+  private def buildNugetPackageArtifactoryPath(targetRepository : String, nuget : NugetPackage): String ={
+    String.format("%s/webapp/#/artifacts/browse/tree/General/%s/%s/%s", this.settings.artifactoryBaseUrl, targetRepository, nuget.id, nuget.file.slack.name)
   }
 }
