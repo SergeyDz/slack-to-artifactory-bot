@@ -14,7 +14,7 @@ scalaVersion := "2.12.4"
 
 name := "slack-to-artifactory-bot"
 organization := "SBTech"
-version := "2.0"
+version := "3.0"
 
 // Note, it's not required for you to define these three settings. These are
 // mostly only necessary if you intend to publish your library's binaries on a
